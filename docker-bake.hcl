@@ -1,13 +1,13 @@
 # Define the PHP version to track, which includes all the necessary extensions and dependencies
 variable "php-version" {
-    # renovate: depName=php packageName=php-src datasource=github-releases
+    # renovate: depName=library/php packageName=php datasource=docker
     default = "8.3.10"
 }
 
 variable "REPOS" {
     # List of repositories to tag on Docker Hub
     default = [
-        "redoxforge/litebans"
+        "jjmoner17/litebans"
     ]
 }
 
