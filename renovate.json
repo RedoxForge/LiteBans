@@ -5,33 +5,33 @@
     "packageRules": [
       {
         "matchDatasources": ["docker"],
-        "groupName": "docker base image",  // No changes needed if you're using a Docker base image like php:latest.
+        "groupName": "docker base image",  
         "groupSlug": "docker-base-image",
         "enabled": true
       },
       {
-        "matchPackageNames": ["libicu-dev"],  // Update "libicu-dev" if you're using different system packages in your Dockerfile.
-        "datasource": "docker",  // This should be correct if you're pulling system packages via apt-get in Docker.
-        "groupName": "system packages",  // Adjust the group name if you have a specific naming preference.
+        "matchPackageNames": ["libicu-dev"],  
+        "datasource": "docker",
+        "groupName": "system packages",  
         "groupSlug": "system-packages",
         "enabled": true
       },
       {
         "matchDatasources": ["github-tags"],
-        "packageNames": ["composer/composer"],  // Ensure this matches the correct path if you're tracking a different Composer version.
-        "groupName": "composer version",  // Adjust the group name if needed.
+        "packageNames": ["composer/composer"],  
+        "groupName": "composer version",  
         "groupSlug": "composer-version",
         "enabled": true
       }
     ],
     "php": {
-      "enabled": true,  // Leave this enabled if you're using PHP dependencies.
-      "groupName": "php dependencies",  // Adjust the group name if you want a different naming convention.
+      "enabled": true,  
+      "groupName": "php dependencies",  
       "groupSlug": "php-dependencies"
     },
     "dockerfile": {
       "enabled": true,
-      "fileMatch": ["Dockerfile"]  // Ensure this matches the exact name of your Dockerfile (e.g., Dockerfile.custom if different).
+      "fileMatch": ["Dockerfile"]  
     }
   }
   
