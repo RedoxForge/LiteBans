@@ -10,15 +10,7 @@
         "enabled": true
       },
       {
-        "matchPackageNames": ["libicu-dev"],  
-        "datasource": "docker",
-        "groupName": "system packages",  
-        "groupSlug": "system-packages",
-        "enabled": true
-      },
-      {
-        "matchDatasources": ["github-tags"],
-        "packageNames": ["composer/composer"],  
+        "matchPackageNames": ["composer/composer"],  
         "groupName": "composer version",  
         "groupSlug": "composer-version",
         "enabled": true
@@ -33,5 +25,5 @@
       "enabled": true,
       "fileMatch": ["Dockerfile"]  
     }
-  }
+}
   
