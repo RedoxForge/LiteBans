@@ -1,22 +1,7 @@
-# Define variables for the apt packages and PHP extensions
+# Define the PHP version to track, which includes all the necessary extensions and dependencies
 variable "php-version" {
-    # renovate: depName=php packageName=php datasource=docker
-    default = "latest"
-}
-
-variable "libicu-dev-version" {
-    # renovate: depName=libicu-dev packageName=libicu-dev datasource=github-releases
-    default = "74.2"
-}
-
-variable "pdo_mysql-version" {
-    # renovate: depName=pdo_mysql packageName=pdo_mysql datasource=github-releases
-    default = "latest"
-}
-
-variable "intl-version" {
-    # renovate: depName=intl packageName=intl datasource=github-releases
-    default = "latest"
+    # renovate: depName=php packageName=php-src datasource=github-releases
+    default = "8.3.10"
 }
 
 variable "REPOS" {
@@ -67,9 +52,6 @@ target "litebans" {
     dockerfile = "Dockerfile"
     args = {
         PHP_VERSION = "${php-version}"
-        LIBICU_DEV_VERSION = "${libicu-dev-version}"
-        PDO_MYSQL_VERSION = "${pdo_mysql-version}"
-        INTL_VERSION = "${intl-version}"
     }
     tags = concat(tag("litebans"),
         vtag("${php-version}", "litebans")
@@ -87,3 +69,4 @@ target "platforms-base" {
         "org.opencontainers.image.source" = "https://github.com/RedoxForge/LiteBans"
     }
 }
+

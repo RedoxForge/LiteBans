@@ -2,16 +2,10 @@
 ARG PHP_VERSION
 FROM php:${PHP_VERSION}
 
+RUN apt-get update && apt-get install -y libicu-dev && docker-php-ext-install pdo_mysql intl
+
 # Set the working directory
 WORKDIR /var/www/html
-
-# Install necessary system packages and PHP extensions using args
-ARG LIBICU_DEV_VERSION
-ARG INTL_VERSION
-ARG PDO_MYSQL_VERSION
-
-RUN apt-get update && apt-get install -y libicu-dev=${LIBICU_DEV_VERSION} \
-    && docker-php-ext-install intl pdo pdo_mysql
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
