@@ -6,7 +6,7 @@ variable "php-version" {
 
 variable "libicu-dev-version" {
     # renovate: depName=libicu-dev packageName=libicu-dev datasource=github-releases
-    default = "67.1"
+    default = "74.2"
 }
 
 variable "pdo_mysql-version" {
