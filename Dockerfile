@@ -1,5 +1,5 @@
 # Use the specified base image from docker-bake.hcl
-ARG PHP_VERSION
+ARG PHP_VERSION="n/a"
 FROM php:${PHP_VERSION}
 
 RUN apt-get update && apt-get install -y libicu-dev && docker-php-ext-install pdo_mysql intl
