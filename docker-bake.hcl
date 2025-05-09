@@ -1,7 +1,7 @@
 # Define the PHP version to track, which includes all the necessary extensions and dependencies
 variable "php-version" {
     # renovate: depName=library/php packageName=php datasource=docker
-    default = "8.3.13"
+    default = "8.4.7"
 }
 
 variable "REPOS" {
