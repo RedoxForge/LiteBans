@@ -1,65 +1,85 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": [
-      "config:base",
-      "schedule:weekly"
-    ],
-    "enabledManagers": [
-      "dockerfile",
-      "composer",
-      "custom.regex"
-    ],
-    "packageRules": [
-      {
-        "groupName": "docker base image",
-        "groupSlug": "docker-base-image",
-        "matchDatasources": ["docker"],
-        "enabled": true
-      },
-      {
-        "groupName": "composer version",
-        "groupSlug": "composer-version",
-        "matchPackageNames": ["composer/composer"],
-        "enabled": true
-      },
-      {
-        "groupName": "php dependencies",
-        "groupSlug": "php-dependencies",
-        "matchDatasources": ["composer"],
-        "enabled": true
-      },
-      {
-        "groupName": "all non-major dependencies",
-        "groupSlug": "all-minor-patch",
-        "matchUpdateTypes": ["minor", "patch"],
-        "matchPackageNames": ["*"]
-      },
-      {
-        "groupName": "all major dependencies",
-        "groupSlug": "all-major",
-        "matchUpdateTypes": ["major"],
-        "matchPackageNames": ["*"]
-      }
-    ],
-    "customManagers": [
-      {
-        "description": "Bake file dependencies",
-        "customType": "regex",
-        "fileMatch": ["^docker-bake\\.hcl$"],
-        "matchStrings": [
-          "depName=(?<depName>[^\\s]+)(?:\\s+packageName=(?<packageName>[^\\s]+))?\\s+datasource=(?<datasource>[^\\s]+)\\s+[^\"]+\"(?<currentValue>[^\"]+)\""
-        ]
-      }
-    ],
-    "dockerfile": {
-      "enabled": true,
-      "fileMatch": ["Dockerfile"]
-    },
-    "php": {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "schedule:weekly"
+  ],
+  "enabledManagers": [
+    "dockerfile",
+    "composer",
+    "custom.regex"
+  ],
+  "packageRules": [
+    {
+      "matchCategories": [
+        "php"
+      ],
       "enabled": true,
       "groupName": "php dependencies",
       "groupSlug": "php-dependencies"
+    },
+    {
+      "groupName": "docker base image",
+      "groupSlug": "docker-base-image",
+      "matchDatasources": [
+        "docker"
+      ],
+      "enabled": true
+    },
+    {
+      "groupName": "composer version",
+      "groupSlug": "composer-version",
+      "matchPackageNames": [
+        "composer/composer"
+      ],
+      "enabled": true
+    },
+    {
+      "groupName": "php dependencies",
+      "groupSlug": "php-dependencies",
+      "matchDatasources": [
+        "composer"
+      ],
+      "enabled": true
+    },
+    {
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch",
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "matchPackageNames": [
+        "*"
+      ]
+    },
+    {
+      "groupName": "all major dependencies",
+      "groupSlug": "all-major",
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "matchPackageNames": [
+        "*"
+      ]
     }
+  ],
+  "customManagers": [
+    {
+      "description": "Bake file dependencies",
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^docker-bake\\.hcl$/"
+      ],
+      "matchStrings": [
+        "depName=(?<depName>[^\\s]+)(?:\\s+packageName=(?<packageName>[^\\s]+))?\\s+datasource=(?<datasource>[^\\s]+)\\s+[^\"]+\"(?<currentValue>[^\"]+)\""
+      ]
+    }
+  ],
+  "dockerfile": {
+    "enabled": true,
+    "managerFilePatterns": [
+      "/Dockerfile/"
+    ]
+  }
 }
-  
-  
