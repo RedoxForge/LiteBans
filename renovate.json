@@ -1,7 +1,7 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
-      "config:base",
+      "config:recommended",
       "schedule:weekly"
     ],
     "enabledManagers": [
@@ -11,27 +11,41 @@
     ],
     "packageRules": [
       {
+        "matchCategories": [
+          "php"
+        ],
+        "groupName": "php dependencies",
+        "groupSlug": "php-dependencies",
+        "enabled": true
+      },
+      {
         "groupName": "docker base image",
         "groupSlug": "docker-base-image",
-        "matchDatasources": ["docker"],
+        "matchDatasources": [
+          "docker"
+        ],
         "enabled": true
       },
       {
         "groupName": "composer version",
         "groupSlug": "composer-version",
-        "matchPackageNames": ["composer/composer"],
+        "matchPackageNames": [
+          "composer/composer"
+        ],
         "enabled": true
       },
       {
         "groupName": "php dependencies",
         "groupSlug": "php-dependencies",
-        "matchDatasources": ["composer"],
+        "matchDatasources": [
+          "composer"
+        ],
         "enabled": true
       },
       {
         "groupName": "all non-major dependencies",
         "groupSlug": "all-minor-patch",
-        "matchUpdateTypes": ["minor", "patch"],
+        "matchUpdateTypes": ["minor",  "patch"],
         "matchPackageNames": ["*"]
       },
       {
@@ -45,7 +59,9 @@
       {
         "description": "Bake file dependencies",
         "customType": "regex",
-        "fileMatch": ["^docker-bake\\.hcl$"],
+        "managerFilePatterns": [
+          "/^docker-bake\\.hcl$/"
+        ],
         "matchStrings": [
           "depName=(?<depName>[^\\s]+)(?:\\s+packageName=(?<packageName>[^\\s]+))?\\s+datasource=(?<datasource>[^\\s]+)\\s+[^\"]+\"(?<currentValue>[^\"]+)\""
         ]
@@ -53,12 +69,9 @@
     ],
     "dockerfile": {
       "enabled": true,
-      "fileMatch": ["Dockerfile"]
-    },
-    "php": {
-      "enabled": true,
-      "groupName": "php dependencies",
-      "groupSlug": "php-dependencies"
+      "managerFilePatterns": [
+            "/Dockerfile/"
+        ]
     }
 }
   
